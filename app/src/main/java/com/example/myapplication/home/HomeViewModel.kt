@@ -1,13 +1,8 @@
 package com.example.myapplication.home
 
 import androidx.lifecycle.*
-import com.example.myapplication.data.FlickerData
-import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.myapplication.data.Photo
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -15,7 +10,7 @@ class HomeViewModel @Inject constructor(
                 private val homeRepository: HomeRepository
                 ) : ViewModel() {
 
-    var queryText : String? = null
+    var queryText : String? = DEFAULT_QUERY
 
     fun searchImages() {
        currentQuery.value = queryText
@@ -28,7 +23,7 @@ class HomeViewModel @Inject constructor(
     }
 
     companion object {
-        private const val DEFAULT_QUERY = ""
+        private const val DEFAULT_QUERY = "CAT"
     }
 
 }

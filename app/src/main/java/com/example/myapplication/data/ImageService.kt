@@ -1,5 +1,6 @@
 package com.example.myapplication.data
 
+import com.example.myapplication.data.model.FlickerData
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

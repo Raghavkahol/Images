@@ -5,10 +5,8 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
-import com.example.myapplication.data.FlickerData
 import com.example.myapplication.data.ImageService
-import com.example.myapplication.data.Photo
-import kotlinx.coroutines.flow.Flow
+import com.example.myapplication.data.model.Photo
 import javax.inject.Inject
 import javax.inject.Singleton
 

@@ -29,13 +29,16 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun initComponents() {
-        getSupportActionBar()?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
         binding.apply{
             viewModel = homeViewModel
             lifecycleOwner = this@HomeActivity
             val adapter = HomeAdapter()
-            binding.recyclerView.adapter = adapter
-            binding.recyclerView.layoutManager = LinearLayoutManager(this@HomeActivity)
+            recyclerView.let{
+                it.adapter = adapter
+                it.setHasFixedSize(true)
+                it.layoutManager = LinearLayoutManager(this@HomeActivity)
+            }
             subscribeUi(adapter)
         }
     }

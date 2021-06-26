@@ -2,9 +2,8 @@ package com.example.myapplication.home
 
 import androidx.paging.PagingSource
 import com.bumptech.glide.load.HttpException
-import com.example.myapplication.data.FlickerData
 import com.example.myapplication.data.ImageService
-import com.example.myapplication.data.Photo
+import com.example.myapplication.data.model.Photo
 import java.io.IOException
 
 class ImagesDataSource(private val imageService : ImageService, private val queryString : String?)

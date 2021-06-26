@@ -4,9 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.data.Photo
+import com.example.myapplication.data.model.Photo
 import com.example.myapplication.databinding.ImageItemBinding
 
 class HomeAdapter : PagingDataAdapter<Photo, HomeAdapter.ImageViewHolder>(ImagesDiffCallback()) {
