@@ -1,12 +1,12 @@
 package com.example.myapplication.home
 
+import androidx.lifecycle.*
 import com.example.myapplication.data.FlickerData
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.example.myapplication.data.Photo
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,21 +16,19 @@ class HomeViewModel @Inject constructor(
                 ) : ViewModel() {
 
     var queryText : String? = null
-    private var images  = MutableLiveData<List<Photo>>()
 
     fun searchImages() {
-        viewModelScope.launch {
-            try {
-                val data : FlickerData? = queryText?.let { homeRepository.getImages(it, 1) }
-                images.value = data?.photos?.photo
-            } catch ( ex : Exception) {
-                ex.printStackTrace()
-            }
-        }
+       currentQuery.value = queryText
     }
 
-    fun getImages() : LiveData<List<Photo>> {
-        return images
+    private val currentQuery = MutableLiveData(DEFAULT_QUERY)
+
+    val photos = currentQuery.switchMap { queryString ->
+        homeRepository.getImages(queryString).cachedIn(viewModelScope)
+    }
+
+    companion object {
+        private const val DEFAULT_QUERY = ""
     }
 
 }
